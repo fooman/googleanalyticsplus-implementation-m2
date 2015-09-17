@@ -1,10 +1,15 @@
-define(['Magento_Checkout/js/action/place-order'], function (Component) {
+define([
+    'jquery',
+    'mage/utils/wrapper'
+], function ($, wrapper) {
     'use strict';
 
-    console.log('fooman place-order.js');
-
-    return function (paymentData, redirectOnSuccess) {
-        console.log('fooman place-order return');
-    }
+    return function (placeOrderAction) {
+        return wrapper.wrap(placeOrderAction, function (originalAction, paymentData, redirectOnSuccess) {
+            /** @TODO use dynamic url */
+            ga('send', 'pageview', '/checkout/#place');
+            return originalAction(paymentData, redirectOnSuccess);
+        });
+    };
 
 });
