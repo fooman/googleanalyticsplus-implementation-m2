@@ -1,11 +1,13 @@
-define(["Magento_Checkout/js/view/shipping"], function (Component) {
+define(function () {
     'use strict';
 
-    return Component.extend({
-        setShippingInformation: function () {
-            /** @TODO use dynamic url */
-            ga('send', 'pageview', '/checkout/#payment');
-            this._super();
-        }
-    });
+    return function (target) {
+        return target.extend({
+            setShippingInformation: function () {
+                /** @TODO use dynamic url */
+                ga('send', 'pageview', '/checkout/#payment');
+                this._super();
+            }
+        });
+    }
 });

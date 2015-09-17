@@ -8,5 +8,4 @@ define(['mage/utils/wrapper'], function (wrapper) {
             return originalAction(paymentData, redirectOnSuccess);
         });
     };
-
 });
