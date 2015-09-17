@@ -1,7 +1,4 @@
-define([
-    'jquery',
-    'mage/utils/wrapper'
-], function ($, wrapper) {
+define(['mage/utils/wrapper'], function (wrapper) {
     'use strict';
 
     return function (placeOrderAction) {
