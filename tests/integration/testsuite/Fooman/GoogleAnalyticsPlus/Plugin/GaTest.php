@@ -12,7 +12,7 @@ namespace Fooman\GoogleAnalyticsPlus\Plugin;
 class GaTest extends \Magento\TestFramework\TestCase\AbstractController
 {
     const GA_MARKER_START = '<!-- BEGIN GOOGLE ANALYTICS CODE -->';
-    const GA_MAKER_END = '<!-- END GOOGLE ANALYTICS CODE -->';
+    const GA_MARKER_END = '<!-- END GOOGLE ANALYTICS CODE -->';
 
 
     /**
@@ -166,7 +166,7 @@ class GaTest extends \Magento\TestFramework\TestCase\AbstractController
     {
         $body = $this->getResponse()->getBody();
         $start = strpos($body, self::GA_MARKER_START);
-        $end = strpos($body, self::GA_MAKER_END) + strlen(self::GA_MAKER_END);
+        $end = strpos($body, self::GA_MARKER_END) + strlen(self::GA_MARKER_END);
         return PHP_EOL . substr($body, $start, $end - $start) . PHP_EOL;
     }
 }
