@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author     Kristof Ringleff
+ * @package    Fooman_GoogleAnalyticsPlus
+ * @copyright  Copyright (c) 2015 Fooman Limited (http://www.fooman.co.nz)
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="google">
+            <group id="analytics">
+                <group id="analyticsplus_universal" translate="label" type="text" sortOrder="100" showInDefault="1"
+                       showInWebsite="1" showInStore="1">
+                    <label>Google Universal Analytics by Fooman</label>
+                    <field id="anonymise" translate="label" type="select" sortOrder="200" showInDefault="1"
+                           showInWebsite="1" showInStore="1">
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                        <label>Anonymise IP Address</label>
+                        <comment><![CDATA[See <a href="https://support.google.com/analytics/answer/2763052?hl=en" target="_blank">Google Documentation</a> for details]]></comment>
+                        <config_path>google/analyticsplus_universal/anonymise</config_path>
+                    </field>
+
+                    <field id="display_advertising" translate="label" type="select" sortOrder="400" showInDefault="1"
+                           showInWebsite="1" showInStore="1">
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                        <label>Enable Display Advertising Features</label>
+                        <comment><![CDATA[See <a href="https://developers.google.com/analytics/devguides/collection/analyticsjs/display-features" target="_blank">Google Documentation</a> for details]]></comment>
+                        <config_path>google/analyticsplus_universal/display_advertising</config_path>
+                    </field>
+
+                    <field id="enhanced_link_attribution" translate="label" type="select" sortOrder="400" showInDefault="1"
+                           showInWebsite="1" showInStore="1">
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                        <label>Enable enhanced link attribution</label>
+                        <comment><![CDATA[See <a href="https://support.google.com/analytics/answer/2558867?hl=en" target="_blank">Google Documentation</a> for details]]></comment>
+                        <config_path>google/analyticsplus_universal/enhanced_link_attribution</config_path>
+                    </field>
+                </group>
+            </group>
+        </section>
+    </system>
+</config>

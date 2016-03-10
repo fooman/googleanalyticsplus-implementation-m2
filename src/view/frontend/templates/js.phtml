@@ -1,0 +1,7 @@
+<?php /** @var $block \Magento\Framework\View\Element\Template */ ?>
+<?php $urlParts = $this->helper('Fooman\GoogleAnalyticsPlus\Helper\Url')->getUnifiedUrlParts(); ?>
+
+<script>
+    var foomanGaBaseUrl = '<?php echo isset($urlParts['path'])?$block->escapeJsQuote($urlParts['path']):''?>';
+    var foomanGaQuery = '<?php echo isset($urlParts['query'])?$block->escapeJsQuote($urlParts['query']):''?>';
+</script>
