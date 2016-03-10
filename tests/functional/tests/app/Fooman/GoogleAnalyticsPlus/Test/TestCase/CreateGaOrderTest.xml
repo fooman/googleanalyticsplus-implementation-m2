@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/variations.xsd">
+    <testCase name="Fooman\GoogleAnalyticsPlus\Test\TestCase\CreateGaOrderTest" summary="Create Order and check transaction tracking" ticketId="">
+        <variation name="CreateOrderTestTrackingEnabled" summary="Place an order">
+            <data name="products" xsi:type="string">catalogProductSimple::default</data>
+            <data name="customer/dataset" xsi:type="string">default</data>
+            <data name="checkoutMethod" xsi:type="string">guest</data>
+            <data name="shippingAddress/dataset" xsi:type="string">UK_address</data>
+            <data name="shipping/shipping_service" xsi:type="string">Flat Rate</data>
+            <data name="shipping/shipping_method" xsi:type="string">Fixed</data>
+            <data name="prices" xsi:type="array">
+                <item name="grandTotal" xsi:type="string">565.00</item>
+            </data>
+            <data name="payment/method" xsi:type="string">checkmo</data>
+            <data name="status" xsi:type="string">Pending</data>
+            <data name="configData" xsi:type="string">google_universal_enabled</data>
+            <constraint name="Fooman\GoogleAnalyticsPlus\Test\Constraint\AssertEcTrackingIsPresent" />
+        </variation>
+
+    </testCase>
+</config>
