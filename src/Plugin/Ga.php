@@ -61,6 +61,11 @@ class Ga
         return implode("\n    ", $gaLines);
     }
 
+    /**
+     * @param \Magento\GoogleAnalytics\Block\Ga $subject
+     *
+     * @return bool
+     */
     protected function shouldSendPageView(\Magento\GoogleAnalytics\Block\Ga $subject)
     {
         $orderIds = $subject->getOrderIds();
@@ -70,6 +75,11 @@ class Ga
         return false;
     }
 
+    /**
+     * @param \Magento\GoogleAnalytics\Block\Ga $subject
+     *
+     * @return array|string
+     */
     protected function getPageName(\Magento\GoogleAnalytics\Block\Ga $subject)
     {
         return $subject->escapeJsQuote($this->helper->getUnifiedPageName($subject->getPageName()));

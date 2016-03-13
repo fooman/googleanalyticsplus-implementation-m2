@@ -44,6 +44,9 @@ class GaTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals("ga('send', 'pageview');", trim($actualResult[2]));
     }
 
+    /**
+     * @param $withOrderIds
+     */
     private function prepareSubjectMock($withOrderIds)
     {
         $this->gaMock = $this->getMock(
@@ -61,6 +64,8 @@ class GaTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @param bool|false $withOrderIds
+     *
      * @return array
      */
     private function executeAroundGetPageTracking($withOrderIds = false)
