@@ -14,6 +14,9 @@ var config = {
             },
             'Magento_Checkout/js/view/shipping': {
                 'Fooman_GoogleAnalyticsPlus/js/view/shipping': true
+            },
+            'Magento_Customer/js/action/check-email-availability': {
+                'Fooman_GoogleAnalyticsPlus/js/action/check-email-availability': true
             }
         }
     }
