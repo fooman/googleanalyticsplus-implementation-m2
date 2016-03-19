@@ -17,6 +17,9 @@ var config = {
             },
             'Magento_Customer/js/action/check-email-availability': {
                 'Fooman_GoogleAnalyticsPlus/js/action/check-email-availability': true
+            },
+            'Magento_Checkout/js/model/shipping-rate-processor/new-address': {
+                'Fooman_GoogleAnalyticsPlus/js/model/shipping-rate-processor/new-address': true
             }
         }
     }

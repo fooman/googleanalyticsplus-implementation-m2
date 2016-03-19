@@ -14,6 +14,7 @@
     <module name="Fooman_GoogleAnalyticsPlus" setup_version="2.0.0">
         <sequence>
             <module name="Magento_GoogleAnalytics"/>
+            <module name="Magento_Checkout"/>
         </sequence>
     </module>
 </config>
