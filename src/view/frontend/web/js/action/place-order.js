@@ -12,7 +12,7 @@ define(['mage/utils/wrapper'], function (wrapper) {
     return function (placeOrderAction) {
         return wrapper.wrap(placeOrderAction, function (originalAction, paymentData, redirectOnSuccess) {
             if (typeof(ga) != "undefined") {
-                var urlToTrack = foomanGaBaseUrl + '/place';
+                var urlToTrack = foomanGaBaseUrl + '/place-order';
                 if (foomanGaQuery.length > 0) {
                     urlToTrack += '?' + foomanGaQuery
                 }
