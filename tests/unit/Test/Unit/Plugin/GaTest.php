@@ -72,15 +72,15 @@ class GaTest extends \PHPUnit_Framework_TestCase
     {
         $this->prepareSubjectMock($withOrderIds);
 
-        /** @var $helper \Fooman\GoogleAnalyticsPlus\Helper\Config */
+        /** @var $helper \Fooman\GoogleAnalyticsPlus\Helper\Url */
         $helper = $this->objectManager->getObject(
-            'Fooman\GoogleAnalyticsPlus\Helper\Config'
+            'Fooman\GoogleAnalyticsPlus\Helper\Url'
         );
 
         /** @var $plugin \Fooman\GoogleAnalyticsPlus\Plugin\Ga */
         $plugin = $this->objectManager->getObject(
             'Fooman\GoogleAnalyticsPlus\Plugin\Ga',
-            ['helper' => $helper]
+            ['urlHelper' => $helper]
         );
 
         $closure = function () {
