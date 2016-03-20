@@ -54,20 +54,4 @@ class Config extends \Magento\Framework\App\Helper\AbstractHelper
             \Magento\Store\Model\ScopeInterface::SCOPE_STORE
         );
     }
-
-    /**
-     * Magento default analytics reports can include the same page as
-     * /contact/index/index/ and  /contact/index/
-     * filter out any index/ here and unify to no trailing /
-     */
-    public function getUnifiedPageName($customPageName = '')
-    {
-        $pageName = trim($customPageName);
-
-        if (empty($pageName)) {
-            $pageName = $this->_getRequest()->getRequestUri();
-        }
-
-        return rtrim(str_replace(['/index', '/?'], ['', '?'], $pageName), '/');
-    }
 }

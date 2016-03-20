@@ -17,9 +17,11 @@ class Ga
      * @param \Fooman\GoogleAnalyticsPlus\Helper\Config $helper
      */
     public function __construct(
-        \Fooman\GoogleAnalyticsPlus\Helper\Config $helper
+        \Fooman\GoogleAnalyticsPlus\Helper\Config $helper,
+        \Fooman\GoogleAnalyticsPlus\Helper\Url $urlHelper
     ) {
         $this->helper = $helper;
+        $this->urlHelper = $urlHelper;
     }
 
     /**
@@ -82,6 +84,6 @@ class Ga
      */
     protected function getPageName(\Magento\GoogleAnalytics\Block\Ga $subject)
     {
-        return $subject->escapeJsQuote($this->helper->getUnifiedPageName($subject->getPageName()));
+        return $subject->escapeJsQuote($this->urlHelper->getUnifiedPageName($subject->getPageName()));
     }
 }
