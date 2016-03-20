@@ -20,6 +20,9 @@ var config = {
             },
             'Magento_Checkout/js/model/shipping-rate-processor/new-address': {
                 'Fooman_GoogleAnalyticsPlus/js/model/shipping-rate-processor/new-address': true
+            },
+            'Magento_Checkout/js/model/shipping-rate-processor/customer-address' : {
+                'Fooman_GoogleAnalyticsPlus/js/model/shipping-rate-processor/customer-address': true
             }
         }
     }
