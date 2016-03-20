@@ -9,17 +9,19 @@
 define(['mage/utils/wrapper'], function (wrapper) {
     'use strict';
 
-    return function (placeOrderAction) {
-        return wrapper.wrap(placeOrderAction, function (originalAction, paymentData, redirectOnSuccess) {
+    return function (target) {
+        target.getRates = wrapper.wrap(target.getRates, function (originalAction, address) {
             if (typeof(ga) != "undefined") {
-                var urlToTrack = foomanGaBaseUrl + '/place-order';
+                var urlToTrack = foomanGaBaseUrl + '/get-shipping-rates';
                 if (foomanGaQuery.length > 0) {
                     urlToTrack += '?' + foomanGaQuery
                 }
                 ga('set', 'page', urlToTrack);
                 ga('send', 'pageview');
             }
-            return originalAction(paymentData, redirectOnSuccess);
+            return originalAction(address);
         });
+        return target;
     };
 });
+
