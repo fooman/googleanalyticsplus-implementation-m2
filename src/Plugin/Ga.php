@@ -37,11 +37,11 @@ class Ga
         $gaLines = [];
         $gaLines[] = sprintf("ga('create', '%s', 'auto');", $subject->escapeJsQuote($accountId));
 
-        if ($this->helper->getUniversalAnonymise()) {
+        if ($this->helper->isAnonymiseEnabled()) {
             $gaLines[] = "ga('set', 'anonymizeIp', true);";
         }
 
-        if ($this->helper->getUniversalDisplayAdvertising()) {
+        if ($this->helper->isDisplayAdvertisingEnabled()) {
             $gaLines[] = "ga('require', 'displayfeatures');";
         }
 

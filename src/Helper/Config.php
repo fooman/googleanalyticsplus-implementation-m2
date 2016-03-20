@@ -21,7 +21,7 @@ class Config extends \Magento\Framework\App\Helper\AbstractHelper
      *
      * @return bool
      */
-    public function getUniversalAnonymise()
+    public function isAnonymiseEnabled()
     {
         return $this->scopeConfig->isSetFlag(
             self::XML_PATH_UNIVERSAL_ANONYMISE,
@@ -34,7 +34,7 @@ class Config extends \Magento\Framework\App\Helper\AbstractHelper
      *
      * @return bool
      */
-    public function getUniversalDisplayAdvertising()
+    public function isDisplayAdvertisingEnabled()
     {
         return $this->scopeConfig->isSetFlag(
             self::XML_PATH_UNIVERSAL_DISPLAY_ADS,
