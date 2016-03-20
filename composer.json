@@ -3,7 +3,7 @@
   "license": "OSL-3.0",
   "description": "",
   "type": "magento2-module",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "autoload": {
     "psr-4": {
       "Fooman\\GoogleAnalyticsPlus\\": "src/"
