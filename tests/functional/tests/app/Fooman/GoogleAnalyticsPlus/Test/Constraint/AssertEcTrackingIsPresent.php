@@ -18,7 +18,7 @@ class AssertEcTrackingIsPresent extends \Magento\Mtf\Constraint\AbstractConstrai
     const GA_EC = "ga('ec:setAction', 'purchase'";
 
     /**
-     * Assert that success message is correct
+     * Assert that purchase tracking code appears in the ga script
      *
      * @param CheckoutOnepageSuccess $checkoutOnepageSuccess
      * @return void
@@ -33,8 +33,6 @@ class AssertEcTrackingIsPresent extends \Magento\Mtf\Constraint\AbstractConstrai
     }
 
     /**
-     * Returns string representation of successful assertion
-     *
      * @return string
      */
     public function toString()

@@ -7,7 +7,7 @@ use Magento\Mtf\TestCase\Scenario;
 class CreateGaOrderTest extends Scenario
 {
     /**
-     * Runs one page checkout test.
+     * Runs checkout test scenario
      *
      * @return void
      */
