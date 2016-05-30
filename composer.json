@@ -6,10 +6,10 @@
   "version": "2.0.4",
   "autoload": {
     "psr-4": {
-      "Fooman\\GoogleAnalyticsPlus\\": ""
+      "Fooman\\GoogleAnalyticsPlus\\": "src/"
     },
     "files": [
-      "registration.php"
+      "src/registration.php"
     ]
   },
   "repositories": [
