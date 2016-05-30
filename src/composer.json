@@ -19,7 +19,7 @@
     }
   ],
   "require": {
-    "magento/module-google-analytics": "~100.0.2"
+    "magento/module-google-analytics": "^100.0.2"
   },
   "require-dev": {
     "phpunit/phpunit": "^4.5"
