@@ -1,6 +1,6 @@
 # Change Log
 
-## [Unreleased]
+## [2.0.4] 2016-12-30
 ### Fixed
 - Update functional tests to work with 2.1.x
 
