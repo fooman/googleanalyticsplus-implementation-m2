@@ -1,5 +1,7 @@
 # Change Log
 
+## [Unreleased]
+
 ## [2.0.5] 2017-06-05
 ### Changed
 - Specify compatible php versions
