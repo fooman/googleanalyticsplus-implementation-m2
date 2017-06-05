@@ -1,6 +1,8 @@
 # Change Log
 
 ## [Unreleased]
+### Changed
+- Specify compatible php versions
 
 ## [2.0.4] 2016-12-30
 ### Fixed
