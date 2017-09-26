@@ -29,7 +29,7 @@ class GaTest extends \PHPUnit\Framework\TestCase
     public function testAroundGetPageTrackingCodeIncludesSetPageName()
     {
         $actualResult = $this->executeAroundGetPageTracking();
-        $this->assertEquals("\/cms", trim($actualResult['optPageUrl']));
+        $this->assertEquals('/cms', trim($actualResult['optPageUrl']));
     }
 
     private function prepareSubjectMock()
