@@ -1,9 +1,11 @@
 # Change Log
 
 ## [Unreleased]
+### Changed
+- Rewrite to support Magento 2.2.0, most of the added logic is now in 
+src/view/frontend/web/js/google-analytics.js
 ### Added
 - Support for PHP 7.1
-- Support for Magento 2.2.0
 
 ## [2.0.5] 2017-06-05
 ### Changed

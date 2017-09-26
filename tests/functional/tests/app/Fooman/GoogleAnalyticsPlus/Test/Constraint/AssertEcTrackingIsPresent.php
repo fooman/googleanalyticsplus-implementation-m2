@@ -15,7 +15,15 @@ use Magento\Checkout\Test\Page\CheckoutOnepageSuccess;
 class AssertEcTrackingIsPresent extends \Magento\Mtf\Constraint\AbstractConstraint
 {
 
-    const GA_EC = '"ordersTrackingData": {"products":';
+    /**
+     *  From Magento 2.2 a Magento text/x-magento-init block is used
+     *  by the time Selenium can access it, the block has already been processed
+     *  and removed from the DOM. Let's keep this test to check for presence of the
+     *  markers around the block
+     *
+     * @see \Fooman\GoogleAnalyticsPlus\Test\Block\Onepage\Body
+     */
+    const GA_EC = '';
 
     /**
      * Assert that purchase tracking code appears in the ga script

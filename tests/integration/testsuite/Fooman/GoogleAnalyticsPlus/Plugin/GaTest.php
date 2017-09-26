@@ -68,7 +68,7 @@ class GaTest extends \Magento\TestFramework\TestCase\AbstractController
     {
         $this->dispatch('/cms/index/index?param1=key1&param2');
         $this->assertContains(
-            '"optPageUrl":"\/cms?param1=key1&param2\')"',
+            '"optPageUrl":"\/cms?param1=key1&param2"',
             $this->getGaScriptFromPage()
         );
     }

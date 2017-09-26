@@ -61,10 +61,7 @@ class GaTest extends \PHPUnit\Framework\TestCase
             ['urlHelper' => $helper]
         );
 
-        $closure = function () {
-            return 'Test';
-        };
-
-        return $plugin->aroundGetPageTrackingData($this->gaMock, $closure, self::TEST_ACCT_ID);
+        $standardResult = ['accountId' => self::TEST_ACCT_ID, 'isAnonymizedIpActive' => 0, 'optPageUrl' => ''];
+        return $plugin->afterGetPageTrackingData($this->gaMock, $standardResult);
     }
 }
