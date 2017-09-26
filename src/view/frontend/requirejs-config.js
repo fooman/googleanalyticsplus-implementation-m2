@@ -7,6 +7,11 @@
  * file that was distributed with this source code.
  */
 var config = {
+    map: {
+        '*': {
+            'Magento_GoogleAnalytics/js/google-analytics': 'Fooman_GoogleAnalyticsPlus/js/google-analytics'
+        }
+    },
     config: {
         mixins: {
             'Magento_Checkout/js/action/place-order': {

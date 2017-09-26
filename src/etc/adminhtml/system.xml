@@ -17,13 +17,6 @@
                 <group id="analyticsplus_universal" translate="label" type="text" sortOrder="100" showInDefault="1"
                        showInWebsite="1" showInStore="1">
                     <label>Google Universal Analytics by Fooman</label>
-                    <field id="anonymise" translate="label" type="select" sortOrder="200" showInDefault="1"
-                           showInWebsite="1" showInStore="1">
-                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                        <label>Anonymise IP Address</label>
-                        <comment><![CDATA[See <a href="https://support.google.com/analytics/answer/2763052?hl=en" target="_blank">Google Documentation</a> for details]]></comment>
-                        <config_path>google/analyticsplus_universal/anonymise</config_path>
-                    </field>
 
                     <field id="display_advertising" translate="label" type="select" sortOrder="400" showInDefault="1"
                            showInWebsite="1" showInStore="1">

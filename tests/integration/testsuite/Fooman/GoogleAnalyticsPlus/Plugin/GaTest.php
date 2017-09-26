@@ -23,7 +23,7 @@ class GaTest extends \Magento\TestFramework\TestCase\AbstractController
     public function testOnlyOneTrackerUsed()
     {
         $this->dispatch('');
-        $this->assertEquals(1, substr_count($this->getGaScriptFromPage(), "ga('send', 'pageview');"));
+        $this->assertEquals(1, substr_count($this->getGaScriptFromPage(), "Magento_GoogleAnalytics/js/google-analytics"));
     }
 
     /**
@@ -34,7 +34,7 @@ class GaTest extends \Magento\TestFramework\TestCase\AbstractController
     public function testGetPageNameOnHomepage()
     {
         $this->dispatch('');
-        $this->assertContains("ga('set', 'page', '');", $this->getGaScriptFromPage());
+        $this->assertContains('"optPageUrl":""', $this->getGaScriptFromPage());
     }
 
     /**
@@ -45,7 +45,7 @@ class GaTest extends \Magento\TestFramework\TestCase\AbstractController
     public function testGetPageNameOnHomepageWithSlash()
     {
         $this->dispatch('/');
-        $this->assertContains("ga('set', 'page', '');", $this->getGaScriptFromPage());
+        $this->assertContains('"optPageUrl":""', $this->getGaScriptFromPage());
     }
 
     /**
@@ -56,7 +56,7 @@ class GaTest extends \Magento\TestFramework\TestCase\AbstractController
     public function testGetPageNameWithQuery()
     {
         $this->dispatch('/?param1=key1&param2');
-        $this->assertContains("ga('set', 'page', '?param1=key1&param2');", $this->getGaScriptFromPage());
+        $this->assertContains('"optPageUrl":"?param1=key1&param2"', $this->getGaScriptFromPage());
     }
 
     /**
@@ -68,7 +68,7 @@ class GaTest extends \Magento\TestFramework\TestCase\AbstractController
     {
         $this->dispatch('/cms/index/index?param1=key1&param2');
         $this->assertContains(
-            "ga('set', 'page', '/cms?param1=key1&param2');",
+            '"optPageUrl":"\/cms?param1=key1&param2\')"',
             $this->getGaScriptFromPage()
         );
     }
@@ -81,31 +81,7 @@ class GaTest extends \Magento\TestFramework\TestCase\AbstractController
     public function testGetPageNameOnCmsIndexIndex()
     {
         $this->dispatch('/cms/index/index');
-        $this->assertContains("ga('set', 'page', '/cms');", $this->getGaScriptFromPage());
-    }
-
-    /**
-     * @magentoAppArea       frontend
-     * @magentoConfigFixture current_store google/analytics/active 1
-     * @magentoConfigFixture current_store google/analytics/account UA-123
-     * @magentoConfigFixture current_store google/analyticsplus_universal/anonymise 1
-     */
-    public function testAnonymise()
-    {
-        $this->dispatch('');
-        $this->assertContains("ga('set', 'anonymizeIp', true);", $this->getGaScriptFromPage());
-    }
-
-    /**
-     * @magentoAppArea       frontend
-     * @magentoConfigFixture current_store google/analytics/active 1
-     * @magentoConfigFixture current_store google/analytics/account UA-123
-     * @magentoConfigFixture current_store google/analyticsplus_universal/anonymise 0
-     */
-    public function testDontAnonymise()
-    {
-        $this->dispatch('');
-        $this->assertNotContains("ga('set', 'anonymizeIp', true);", $this->getGaScriptFromPage());
+        $this->assertContains('"optPageUrl":"\/cms"', $this->getGaScriptFromPage());
     }
 
     /**
@@ -117,7 +93,7 @@ class GaTest extends \Magento\TestFramework\TestCase\AbstractController
     public function testDisplayAdvertising()
     {
         $this->dispatch('');
-        $this->assertContains("ga('require', 'displayfeatures');", $this->getGaScriptFromPage());
+        $this->assertContains('"isDisplayFeaturesActive":1', $this->getGaScriptFromPage());
     }
 
 
@@ -130,7 +106,7 @@ class GaTest extends \Magento\TestFramework\TestCase\AbstractController
     public function testDontDisplayAdvertising()
     {
         $this->dispatch('');
-        $this->assertNotContains("ga('require', 'displayfeatures');", $this->getGaScriptFromPage());
+        $this->assertContains('"isDisplayFeaturesActive":0', $this->getGaScriptFromPage());
     }
 
     /**
@@ -142,7 +118,7 @@ class GaTest extends \Magento\TestFramework\TestCase\AbstractController
     public function testEnhancedLinkAttribution()
     {
         $this->dispatch('');
-        $this->assertContains("ga('require', 'linkid');", $this->getGaScriptFromPage());
+        $this->assertContains('"isEnhancedLinksActive":1', $this->getGaScriptFromPage());
     }
 
     /**
@@ -154,7 +130,7 @@ class GaTest extends \Magento\TestFramework\TestCase\AbstractController
     public function testNoEnhancedLinkAttribution()
     {
         $this->dispatch('');
-        $this->assertNotContains("ga('require', 'linkid');", $this->getGaScriptFromPage());
+        $this->assertContains('"isEnhancedLinksActive":0', $this->getGaScriptFromPage());
     }
 
     /**

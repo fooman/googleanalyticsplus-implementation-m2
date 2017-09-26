@@ -23,51 +23,32 @@ class GaTest extends \PHPUnit\Framework\TestCase
     public function testAroundGetPageTrackingCodeIncludesCreateTracker()
     {
         $actualResult = $this->executeAroundGetPageTracking();
-        $this->assertEquals(sprintf("ga('create', '%s', 'auto');", self::TEST_ACCT_ID), $actualResult[0]);
+        $this->assertEquals(self::TEST_ACCT_ID, $actualResult['accountId']);
     }
 
     public function testAroundGetPageTrackingCodeIncludesSetPageName()
     {
         $actualResult = $this->executeAroundGetPageTracking();
-        $this->assertEquals("ga('set', 'page', '/cms');", trim($actualResult[1]));
+        $this->assertEquals("\/cms", trim($actualResult['optPageUrl']));
     }
 
-    public function testAroundGetPageTrackingCodeDoesntSendPageView()
-    {
-        $actualResult = $this->executeAroundGetPageTracking(true);
-        $this->assertFalse(array_search("ga('send', 'pageview');", $actualResult));
-    }
-
-    public function testAroundGetPageTrackingCodeIncludesSendPageView()
-    {
-        $actualResult = $this->executeAroundGetPageTracking();
-        $this->assertEquals("ga('send', 'pageview');", trim($actualResult[2]));
-    }
-
-    /**
-     * @param $withOrderIds
-     */
-    private function prepareSubjectMock($withOrderIds)
+    private function prepareSubjectMock()
     {
         $this->gaMock = $this->createPartialMock(
             '\Magento\GoogleAnalytics\Block\Ga',
-            ['escapeJsQuote', 'getPageName', 'getOrderIds']
+            ['escapeJsQuote', 'getPageName']
         );
-        if ($withOrderIds) {
-            $this->gaMock->expects($this->any())->method('getOrderIds')->will($this->returnValue(['1']));
-        }
+
         $this->gaMock->expects($this->any())->method('escapeJsQuote')->will($this->returnArgument(0));
         $this->gaMock->expects($this->any())->method('getPageName')->will($this->returnValue(self::TEST_PAGE_URL));
     }
 
     /**
-     * @param bool|false $withOrderIds
-     *
      * @return array
      */
-    private function executeAroundGetPageTracking($withOrderIds = false)
+    private function executeAroundGetPageTracking()
     {
-        $this->prepareSubjectMock($withOrderIds);
+        $this->prepareSubjectMock();
 
         /** @var $helper \Fooman\GoogleAnalyticsPlus\Helper\Url */
         $helper = $this->objectManager->getObject(
@@ -84,7 +65,6 @@ class GaTest extends \PHPUnit\Framework\TestCase
             return 'Test';
         };
 
-        $actualResult = explode("\n", $plugin->aroundGetPageTrackingCode($this->gaMock, $closure, self::TEST_ACCT_ID));
-        return $actualResult;
+        return $plugin->aroundGetPageTrackingData($this->gaMock, $closure, self::TEST_ACCT_ID);
     }
 }

@@ -26,55 +26,18 @@ class Ga
 
     /**
      * @param \Magento\GoogleAnalytics\Block\Ga $subject
-     * @param \Closure                          $proceed
-     * @param                                   $accountId
+     * @param                                   $result
      *
      * @return string
      */
-    public function aroundGetPageTrackingCode(
+    public function afterGetPageTrackingData(
         \Magento\GoogleAnalytics\Block\Ga $subject,
-        \Closure $proceed,
-        $accountId
+        $result
     ) {
-        $gaLines = [];
-        $gaLines[] = sprintf("ga('create', '%s', 'auto');", $subject->escapeJsQuote($accountId));
-
-        if ($this->helper->isAnonymiseEnabled()) {
-            $gaLines[] = "ga('set', 'anonymizeIp', true);";
-        }
-
-        if ($this->helper->isDisplayAdvertisingEnabled()) {
-            $gaLines[] = "ga('require', 'displayfeatures');";
-        }
-
-        if ($this->helper->isEnhancedLinkAttrEnabled()) {
-            $gaLines[] = "ga('require', 'linkid');";
-        }
-
-        $gaLines[] = sprintf("ga('set', 'page', '%s');", $this->getPageName($subject));
-
-        //Page view is sent in getOrdersTrackingCode if order is placed, don't send it twice
-        if ($this->shouldSendPageView($subject)) {
-            $gaLines[] = "ga('send', 'pageview');";
-        }
-
-        //we can't use $proceed($accountId) here as it would include the original output
-        //doubling up the number of tracked pages
-        return implode("\n    ", $gaLines);
-    }
-
-    /**
-     * @param \Magento\GoogleAnalytics\Block\Ga $subject
-     *
-     * @return bool
-     */
-    protected function shouldSendPageView(\Magento\GoogleAnalytics\Block\Ga $subject)
-    {
-        $orderIds = $subject->getOrderIds();
-        if (empty($orderIds) || !is_array($orderIds)) {
-            return true;
-        }
-        return false;
+        $result['isDisplayFeaturesActive'] = (int)$this->helper->isDisplayAdvertisingEnabled();
+        $result['optPageUrl'] = $this->getPageName($subject);
+        $result['isEnhancedLinksActive'] = (int)$this->helper->isEnhancedLinkAttrEnabled();
+        return $result;
     }
 
     /**
