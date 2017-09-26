@@ -15,7 +15,7 @@ use Magento\Checkout\Test\Page\CheckoutOnepageSuccess;
 class AssertEcTrackingIsPresent extends \Magento\Mtf\Constraint\AbstractConstraint
 {
 
-    const GA_EC = "ga('ec:setAction', 'purchase'";
+    const GA_EC = '"ordersTrackingData": {"products":';
 
     /**
      * Assert that purchase tracking code appears in the ga script
