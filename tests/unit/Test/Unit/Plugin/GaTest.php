@@ -3,7 +3,7 @@ namespace Fooman\GoogleAnalyticsPlus\Test\Unit\Plugin;
 
 use Magento\Framework\TestFramework\Unit\Helper\ObjectManager;
 
-class GaTest extends \PHPUnit_Framework_TestCase
+class GaTest extends \PHPUnit\Framework\TestCase
 {
     const TEST_ACCT_ID = 'UA-123456';
     const TEST_PAGE_URL = '/cms/index';
@@ -49,12 +49,9 @@ class GaTest extends \PHPUnit_Framework_TestCase
      */
     private function prepareSubjectMock($withOrderIds)
     {
-        $this->gaMock = $this->getMock(
+        $this->gaMock = $this->createPartialMock(
             '\Magento\GoogleAnalytics\Block\Ga',
-            ['escapeJsQuote', 'getPageName', 'getOrderIds'],
-            [],
-            '',
-            false
+            ['escapeJsQuote', 'getPageName', 'getOrderIds']
         );
         if ($withOrderIds) {
             $this->gaMock->expects($this->any())->method('getOrderIds')->will($this->returnValue(['1']));
