@@ -23,7 +23,7 @@ class AssertEcTrackingIsPresent extends \Magento\Mtf\Constraint\AbstractConstrai
      *
      * @see \Fooman\GoogleAnalyticsPlus\Test\Block\Onepage\Body
      */
-    const GA_EC = '';
+    const GA_EC = '<!--BEGINGOOGLEANALYTICSCODE--><!--ENDGOOGLEANALYTICSCODE-->';
 
     /**
      * Assert that purchase tracking code appears in the ga script
@@ -33,9 +33,12 @@ class AssertEcTrackingIsPresent extends \Magento\Mtf\Constraint\AbstractConstrai
      */
     public function processAssert(CheckoutOnepageSuccess $checkoutOnepageSuccess)
     {
-        \PHPUnit_Framework_Assert::assertEmpty(
+        \PHPUnit_Framework_Assert::assertEquals(
             str_replace([PHP_EOL, ' '], '', $checkoutOnepageSuccess->getFoomanBody()->getGaScript()),
-            'Ecommerce Tracking is not present. |' .str_replace([PHP_EOL, ' '], '', $checkoutOnepageSuccess->getFoomanBody()->getGaScript()).'|'
+            self::GA_EC,
+            'Ecommerce Tracking is not present. |' . str_replace(
+                [PHP_EOL, ' '], '', $checkoutOnepageSuccess->getFoomanBody()->getGaScript()
+            ) . '|'
         );
     }
 
