@@ -33,8 +33,8 @@ class AssertEcTrackingIsPresent extends \Magento\Mtf\Constraint\AbstractConstrai
      */
     public function processAssert(CheckoutOnepageSuccess $checkoutOnepageSuccess)
     {
-        \PHPUnit_Framework_Assert::assertTrue(
-            ctype_space(str_replace(PHP_EOL, '', $checkoutOnepageSuccess->getFoomanBody()->getGaScript())),
+        \PHPUnit_Framework_Assert::assertEmpty(
+            str_replace([PHP_EOL, ' '], '', $checkoutOnepageSuccess->getFoomanBody()->getGaScript()),
             'Ecommerce Tracking is not present.'
         );
     }
