@@ -1,6 +1,6 @@
 # Change Log
 
-## [Unreleased]
+## [3.0.0] 2017-09-27
 ### Changed
 - Rewrite to support Magento 2.2.0, most of the added logic is now in 
 src/view/frontend/web/js/google-analytics.js
