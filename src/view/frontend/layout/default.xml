@@ -13,7 +13,7 @@
       xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceContainer name="after.body.start">
-            <block class="\Magento\Framework\View\Element\Template"
+            <block class="Magento\Framework\View\Element\Template"
                    before="google_analytics"
                    name="fooman_googleanalyticsplus_js"
                    as="fooman_googleanalyticsplus_js"
