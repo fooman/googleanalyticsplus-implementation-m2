@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../../vendor/magento/mtf/etc/pages.xsd">
   <page name="CheckoutOnepageSuccess" mca="checkout/onepage/success" module="Magento_Checkout">
-    <block name="foomanBody" class="Fooman\GoogleAnalyticsPlus\Test\Block\Onepage\Body" locator="//body" strategy="xpath"/>
+    <block name="foomanHtml" class="Fooman\GoogleAnalyticsPlus\Test\Block\Onepage\Html" locator="/html" strategy="xpath"/>
   </page>
 </config>
