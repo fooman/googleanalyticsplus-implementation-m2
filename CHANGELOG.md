@@ -1,5 +1,7 @@
 # Change Log
 
+## [Unreleased]
+
 ## [104.0.0] 2018-12-02
 ### Changed
 - Package name renamed to fooman/googleanalyticsplus-implementation-m2, installation should be via metapackage fooman/googleanalyticsplus-m2
