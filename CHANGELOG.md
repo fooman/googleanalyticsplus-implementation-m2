@@ -6,6 +6,8 @@
 - Increased version number by 100 to differentiate from metapackage
 ### Fixed
 - Add currency code on order tracking data
+### Added
+- Support for Magento 2.3
 
 ## [3.0.0] 2017-09-27
 ### Changed
