@@ -17,8 +17,15 @@
         "magento/module-google-analytics": "^100.2.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "^6.2"
+        "phpunit/phpunit": "^4.1 | ^6.2",
+        "fooman/magento2-phpunit-bridge": "0.7.*"
     },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://repo-magento-mirror.fooman.co.nz/"
+        }
+    ],
     "minimum-stability": "dev",
     "prefer-stable": true
 }
