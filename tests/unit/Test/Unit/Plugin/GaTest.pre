@@ -2,8 +2,9 @@
 namespace Fooman\GoogleAnalyticsPlus\Test\Unit\Plugin;
 
 use Magento\Framework\TestFramework\Unit\Helper\ObjectManager;
+use Fooman\PhpunitBridge\BaseUnitTestCase;
 
-class GaTest extends \PHPUnit\Framework\TestCase
+class GaTest extends BaseUnitTestCase
 {
     const TEST_ACCT_ID = 'UA-123456';
     const TEST_PAGE_URL = '/cms/index';
