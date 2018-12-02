@@ -1,9 +1,9 @@
 {
-    "name": "fooman/googleanalyticsplus-m2",
+    "name": "fooman/googleanalyticsplus-implementation-m2",
     "license": "OSL-3.0",
     "description": "Additional functionality for the default Magento Google Analytics",
     "type": "magento2-module",
-    "version": "3.0.1",
+    "version": "104.0.0",
     "autoload": {
         "psr-4": {
             "Fooman\\GoogleAnalyticsPlus\\": ""

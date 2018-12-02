@@ -1,6 +1,11 @@
 # Change Log
 
 ## [Unreleased]
+### Changed
+- Package name renamed to fooman/googleanalyticsplus-implementation-m2, installation should be via metapackage fooman/googleanalyticsplus-m2
+- Increased version number by 100 to differentiate from metapackage
+### Fixed
+- Add currency code on order tracking data
 
 ## [3.0.0] 2017-09-27
 ### Changed
