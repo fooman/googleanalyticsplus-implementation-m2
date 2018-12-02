@@ -1,5 +1,5 @@
 <?php
-namespace Fooman\GoogleAnalyticsPlus\Test\Unit\Plugin;
+namespace Fooman\GoogleAnalyticsPlus\UnitTest\Plugin;
 
 use Magento\Framework\TestFramework\Unit\Helper\ObjectManager;
 use Fooman\PhpunitBridge\BaseUnitTestCase;
