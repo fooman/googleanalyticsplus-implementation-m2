@@ -10,7 +10,7 @@
 namespace Fooman\GoogleAnalyticsPlus\Test\Constraint;
 
 use Magento\Checkout\Test\Page\CheckoutOnepageSuccess;
-
+use Fooman\PhpunitAssertBridge\CompatAssert;
 
 class AssertEcTrackingIsPresent extends \Magento\Mtf\Constraint\AbstractConstraint
 {
@@ -33,7 +33,7 @@ class AssertEcTrackingIsPresent extends \Magento\Mtf\Constraint\AbstractConstrai
      */
     public function processAssert(CheckoutOnepageSuccess $checkoutOnepageSuccess)
     {
-        \PHPUnit\Framework\Assert::assertEquals(
+        CompatAssert::assertEquals(
             str_replace([PHP_EOL, ' '], '', $checkoutOnepageSuccess->getFoomanHtml()->getGaScript()),
             self::GA_EC,
             'Ecommerce Tracking is not present. |' . str_replace(
