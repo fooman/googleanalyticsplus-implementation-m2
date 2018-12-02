@@ -36,7 +36,7 @@ class GaTest extends BaseUnitTestCase
     private function prepareSubjectMock()
     {
         $this->gaMock = $this->createPartialMock(
-            '\Magento\GoogleAnalytics\Block\Ga',
+            \Magento\GoogleAnalytics\Block\Ga::class,
             ['escapeJsQuote', 'getPageName']
         );
 
@@ -53,12 +53,12 @@ class GaTest extends BaseUnitTestCase
 
         /** @var $helper \Fooman\GoogleAnalyticsPlus\Helper\Url */
         $helper = $this->objectManager->getObject(
-            'Fooman\GoogleAnalyticsPlus\Helper\Url'
+            \Fooman\GoogleAnalyticsPlus\Helper\Url::class
         );
 
         /** @var $plugin \Fooman\GoogleAnalyticsPlus\Plugin\Ga */
         $plugin = $this->objectManager->getObject(
-            'Fooman\GoogleAnalyticsPlus\Plugin\Ga',
+            \Fooman\GoogleAnalyticsPlus\Plugin\Ga::class,
             ['urlHelper' => $helper]
         );
 
