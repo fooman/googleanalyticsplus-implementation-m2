@@ -1,6 +1,8 @@
 # Change Log
 
 ## [Unreleased]
+### Security
+- Fixed potential XSS due to wrong escape method used
 
 ## [104.0.1] 2018-12-02
 ### Changed

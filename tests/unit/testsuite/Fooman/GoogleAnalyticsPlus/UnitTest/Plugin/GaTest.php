@@ -37,10 +37,10 @@ class GaTest extends BaseUnitTestCase
     {
         $this->gaMock = $this->createPartialMock(
             \Magento\GoogleAnalytics\Block\Ga::class,
-            ['escapeJsQuote', 'getPageName']
+            ['escapeUrl', 'getPageName']
         );
 
-        $this->gaMock->expects($this->any())->method('escapeJsQuote')->will($this->returnArgument(0));
+        $this->gaMock->expects($this->any())->method('escapeUrl')->will($this->returnArgument(0));
         $this->gaMock->expects($this->any())->method('getPageName')->will($this->returnValue(self::TEST_PAGE_URL));
     }
 

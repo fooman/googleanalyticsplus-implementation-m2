@@ -13,8 +13,8 @@ define(['mage/utils/wrapper'], function (wrapper) {
         target.getRates = wrapper.wrap(target.getRates, function (originalAction, address) {
             if (typeof(ga) != "undefined") {
                 var urlToTrack = foomanGaBaseUrl + '/get-shipping-rates';
-                if (foomanGaQuery.length > 0) {
-                    urlToTrack += '?' + foomanGaQuery
+                if (location.search.length > 0) {
+                    urlToTrack += location.search
                 }
                 ga('set', 'page', urlToTrack);
                 ga('send', 'pageview');

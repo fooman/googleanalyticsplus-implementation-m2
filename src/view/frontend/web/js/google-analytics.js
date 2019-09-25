@@ -37,7 +37,7 @@ define([
                 i.GoogleAnalyticsObject = r;
                 i[r] = i[r] || function () {
                         (i[r].q = i[r].q || []).push(arguments)
-                    }, i[r].l = 1 * new Date();
+                }, i[r].l = 1 * new Date();
                 a = s.createElement(o),
                     m = s.getElementsByTagName(o)[0];
                 a.async = 1;
@@ -60,7 +60,7 @@ define([
                 ga('require', 'linkid');
             }
 
-            ga('set', 'page' + config.pageTrackingData.optPageUrl);
+            ga('set', 'page' + config.pageTrackingData.optPageUrl + location.search);
 
             // Process orders data
             if (config.ordersTrackingData) {

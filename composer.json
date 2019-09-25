@@ -3,7 +3,7 @@
     "license": "OSL-3.0",
     "description": "Additional functionality for the default Magento Google Analytics",
     "type": "magento2-module",
-    "version": "104.0.2",
+    "version": "105.0.0",
     "autoload": {
         "psr-4": {
             "Fooman\\GoogleAnalyticsPlus\\": "src/"
@@ -18,7 +18,10 @@
     },
     "require-dev": {
         "phpunit/phpunit": "^4.1 | ^6.2",
-        "fooman/magento2-phpunit-bridge": "0.7.*"
+        "fooman/magento2-phpunit-bridge": "^0.7.0",
+        "captainhook/captainhook": "^4.2",
+        "magento/magento-coding-standard": "*",
+        "fooman/phpstan-magento2-magic-methods": "^0.6.0"
     },
     "repositories": [
         {

@@ -1,7 +1,6 @@
 <?php /** @var $block \Magento\Framework\View\Element\Template */ ?>
-<?php $urlParts = $this->helper(\Fooman\GoogleAnalyticsPlus\Helper\Url::class)->getUnifiedUrlParts(); ?>
+<?php $urlParts = $block->helper(\Fooman\GoogleAnalyticsPlus\Helper\Url::class)->getUnifiedUrlParts(); ?>
 
 <script>
-    var foomanGaBaseUrl = '<?php echo isset($urlParts['path'])?$block->escapeJsQuote($urlParts['path']):''?>';
-    var foomanGaQuery = '<?php echo isset($urlParts['query'])?$block->escapeJsQuote($urlParts['query']):''?>';
+    var foomanGaBaseUrl = '<?= isset($urlParts['path'])?$block->escapeUrl($urlParts['path']):''?>';
 </script>

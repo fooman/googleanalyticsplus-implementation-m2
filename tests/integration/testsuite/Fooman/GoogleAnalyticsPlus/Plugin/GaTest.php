@@ -56,7 +56,7 @@ class GaTest extends \Magento\TestFramework\TestCase\AbstractController
     public function testGetPageNameWithQuery()
     {
         $this->dispatch('/?param1=key1&param2');
-        $this->assertContains('"optPageUrl":"?param1=key1&param2"', $this->getGaScriptFromPage());
+        $this->assertContains('"optPageUrl":""', $this->getGaScriptFromPage());
     }
 
     /**
@@ -68,7 +68,7 @@ class GaTest extends \Magento\TestFramework\TestCase\AbstractController
     {
         $this->dispatch('/cms/index/index?param1=key1&param2');
         $this->assertContains(
-            '"optPageUrl":"\/cms?param1=key1&param2"',
+            '"optPageUrl":"\/cms"',
             $this->getGaScriptFromPage()
         );
     }

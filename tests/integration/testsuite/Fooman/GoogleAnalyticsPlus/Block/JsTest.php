@@ -21,7 +21,6 @@ class JsTest extends \Magento\TestFramework\TestCase\AbstractController
         $this->dispatch('');
         $body = $this->getResponse()->getBody();
         $this->assertContains("var foomanGaBaseUrl = '';", $body);
-        $this->assertContains("var foomanGaQuery = '';", $body);
     }
 
     /**
@@ -34,6 +33,29 @@ class JsTest extends \Magento\TestFramework\TestCase\AbstractController
         $this->dispatch('/cms/index/index?param1=key1&param2');
         $body = $this->getResponse()->getBody();
         $this->assertContains("var foomanGaBaseUrl = '/cms';", $body);
-        $this->assertContains("var foomanGaQuery = 'param1=key1&param2';", $body);
+    }
+
+    /**
+     * @magentoAppArea       frontend
+     * @magentoConfigFixture current_store google/analytics/active 1
+     * @magentoConfigFixture current_store google/analytics/account UA-123
+     */
+    public function testJsQueryParams()
+    {
+        $this->dispatch('/index?</script><script>confirm(document.cookie)</script>');
+        $body = $this->getResponse()->getBody();
+        $this->assertNotContains("<script>confirm(document.cookie)</script>", $body);
+    }
+
+    /**
+     * @magentoAppArea       frontend
+     * @magentoConfigFixture current_store google/analytics/active 1
+     * @magentoConfigFixture current_store google/analytics/account UA-123
+     */
+    public function testBaseUrlXss()
+    {
+        $this->dispatch('/index/</script><script>confirm(document.cookie)</script>');
+        $body = $this->getResponse()->getBody();
+        $this->assertNotContains("<script>confirm(document.cookie)</script>", $body);
     }
 }
