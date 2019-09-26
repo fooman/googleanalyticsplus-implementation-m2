@@ -1,6 +1,6 @@
 # Change Log
 
-## [Unreleased]
+## [105.0.0] - 2019-09-26
 ### Security
 - Fixed potential XSS due to wrong escape method used
 
