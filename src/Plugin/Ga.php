@@ -12,6 +12,7 @@ namespace Fooman\GoogleAnalyticsPlus\Plugin;
 class Ga
 {
     protected $helper;
+    protected $urlHelper;
 
     /**
      * @param \Fooman\GoogleAnalyticsPlus\Helper\Config $helper

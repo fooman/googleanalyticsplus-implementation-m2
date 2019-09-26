@@ -56,7 +56,7 @@ class GaTest extends \Magento\TestFramework\TestCase\AbstractController
     public function testGetPageNameWithQuery()
     {
         $this->dispatch('/?param1=key1&param2');
-        $this->assertContains("ga('set', 'page', '?param1=key1&param2');", $this->getGaScriptFromPage());
+        $this->assertContains("ga('set', 'page', '');", $this->getGaScriptFromPage());
     }
 
     /**
@@ -66,9 +66,9 @@ class GaTest extends \Magento\TestFramework\TestCase\AbstractController
      */
     public function testGetPageOnCmsIndexIndexNameWithQuery()
     {
-        $this->dispatch('/cms/index/index?param1=key1&param2');
+        $this->dispatch('/cms/index/index');
         $this->assertContains(
-            "ga('set', 'page', '/cms?param1=key1&param2');",
+            "ga('set', 'page', '/cms');",
             $this->getGaScriptFromPage()
         );
     }

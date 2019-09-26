@@ -13,8 +13,8 @@ define(['mage/utils/wrapper'], function (wrapper) {
         return wrapper.wrap(checkEmailAction, function (originalAction, deferred, email) {
             if (typeof(ga) != "undefined") {
                 var urlToTrack = foomanGaBaseUrl + '/email-entered';
-                if (foomanGaQuery.length > 0) {
-                    urlToTrack += '?' + foomanGaQuery
+                if (location.search.length > 0) {
+                    urlToTrack += location.search
                 }
                 ga('set', 'page', urlToTrack);
                 ga('send', 'pageview');
