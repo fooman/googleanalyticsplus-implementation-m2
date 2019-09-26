@@ -17,7 +17,11 @@
                    before="google_analytics"
                    name="fooman_googleanalyticsplus_js"
                    as="fooman_googleanalyticsplus_js"
-                   template="Fooman_GoogleAnalyticsPlus::js.phtml"/>
+                   template="Fooman_GoogleAnalyticsPlus::js.phtml">
+                <arguments>
+                    <argument name="view_model" xsi:type="object">Fooman\GoogleAnalyticsPlus\ViewModel\Url</argument>
+                </arguments>
+            </block>
         </referenceContainer>
     </body>
 </page>
