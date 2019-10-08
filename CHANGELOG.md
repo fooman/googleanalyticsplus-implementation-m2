@@ -1,6 +1,8 @@
 # Change Log
 
 ## [Unreleased]
+### Fixed
+- Normalised url was not used
 
 ## [105.0.0] - 2019-09-26
 ### Security
