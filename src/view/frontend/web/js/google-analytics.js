@@ -60,7 +60,7 @@ define([
                 ga('require', 'linkid');
             }
 
-            ga('set', 'page' + config.pageTrackingData.optPageUrl + location.search);
+            ga('set', 'page', config.pageTrackingData.optPageUrl + location.search);
 
             // Process orders data
             if (config.ordersTrackingData) {
