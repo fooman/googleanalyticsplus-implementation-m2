@@ -9,8 +9,20 @@
  */
 namespace Fooman\GoogleAnalyticsPlus\Helper;
 
+use Magento\Framework\App\Helper\Context;
+
 class Url extends \Magento\Framework\App\Helper\AbstractHelper
 {
+    private $config;
+
+    public function __construct(
+        Context $context,
+        Config $config
+    ) {
+        $this->config = $config;
+        parent::__construct($context);
+    }
+
     /**
      * Magento default analytics reports can include the same page as
      * /contact/index/index/ and  /contact/index/
@@ -25,7 +37,11 @@ class Url extends \Magento\Framework\App\Helper\AbstractHelper
         $pageName = trim($customPageName);
 
         if (empty($pageName)) {
-            $pageName = $this->_getRequest()->getPathInfo();
+            if ($this->config->usePathInfo()) {
+                $pageName = $this->_getRequest()->getPathInfo();
+            } else {
+                $pageName = $this->_getRequest()->getRequestUri();
+            }
         }
 
         return rtrim(str_replace(['/index', '/?'], ['', '?'], $pageName), '/');
