@@ -158,7 +158,7 @@ class GaTest extends AbstractBackendController
         $internalUrl = sprintf('catalog/product/view/id/%s', $product->getEntityId());
         $this->dispatch($internalUrl);
         self::assertStringContainsString(
-            '"optPageUrl":"\/catalog\/product\/view\/id"',
+            '"optPageUrl":"\/catalog\/product\/view\/id',
             $this->getGaScriptFromPage()
         );
     }
@@ -174,7 +174,24 @@ class GaTest extends AbstractBackendController
         $product = $this->productRepository->get('simple');
         $this->dispatch($product->getUrlKey());
         self::assertStringContainsString(
-            '"optPageUrl":"\/catalog\/product\/view\/id"',
+            '"optPageUrl":"\/catalog\/product\/view\/id',
+            $this->getGaScriptFromPage()
+        );
+    }
+
+    /**
+     * @magentoAppArea       frontend
+     * @magentoDataFixture Magento/Catalog/_files/product_simple.php
+     * @magentoConfigFixture current_store google/analytics/active 1
+     * @magentoConfigFixture current_store google/analytics/account UA-123
+     * @magentoConfigFixture current_store google/analyticsplus_universal/use_path_info 0
+     */
+    public function testGetPageNameOnRewrittenProductPageWithoutPathInfo()
+    {
+        $product = $this->productRepository->get('simple');
+        $this->dispatch($product->getUrlKey());
+        self::assertStringContainsString(
+            '"optPageUrl":"\/simple"',
             $this->getGaScriptFromPage()
         );
     }
