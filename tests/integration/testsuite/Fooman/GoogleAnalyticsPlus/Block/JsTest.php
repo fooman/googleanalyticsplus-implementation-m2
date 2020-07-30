@@ -46,7 +46,7 @@ class JsTest extends AbstractBackendController
     {
         $this->dispatch('/index?</script><script>confirm(document.cookie)</script>');
         $body = $this->getResponse()->getBody();
-        self::assertNotContains("<script>confirm(document.cookie)</script>", $body);
+        self::assertStringNotContainsString("<script>confirm(document.cookie)</script>", $body);
     }
 
     /**
@@ -58,6 +58,6 @@ class JsTest extends AbstractBackendController
     {
         $this->dispatch('/index/</script><script>confirm(document.cookie)</script>');
         $body = $this->getResponse()->getBody();
-        self::assertNotContains("<script>confirm(document.cookie)</script>", $body);
+        self::assertStringNotContainsString("<script>confirm(document.cookie)</script>", $body);
     }
 }

@@ -11,6 +11,7 @@ namespace Fooman\GoogleAnalyticsPlus\Plugin;
 
 use Magento\Catalog\Api\ProductRepositoryInterface;
 use Fooman\PhpunitBridge\AbstractBackendController;
+use Magento\TestFramework\Helper\Bootstrap;
 
 class GaTest extends AbstractBackendController
 {
