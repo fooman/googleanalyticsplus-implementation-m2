@@ -156,7 +156,7 @@ class GaTest extends AbstractBackendController
     public function testGetPageNameOnProductPage()
     {
         $product = $this->productRepository->get('simple');
-        $internalUrl = sprintf('catalog/product/view/id/%s', $product->getEntityId());
+        $internalUrl = sprintf('/catalog/product/view/id/%s', $product->getEntityId());
         $this->dispatch($internalUrl);
         self::assertStringContainsString(
             '"optPageUrl":"\/catalog\/product\/view\/id',
@@ -173,7 +173,7 @@ class GaTest extends AbstractBackendController
     public function testGetPageNameOnRewrittenProductPage()
     {
         $product = $this->productRepository->get('simple');
-        $this->dispatch($product->getUrlKey());
+        $this->dispatch('/'.$product->getUrlKey());
         self::assertStringContainsString(
             '"optPageUrl":"\/catalog\/product\/view\/id',
             $this->getGaScriptFromPage()
@@ -190,9 +190,9 @@ class GaTest extends AbstractBackendController
     public function testGetPageNameOnRewrittenProductPageWithoutPathInfo()
     {
         $product = $this->productRepository->get('simple');
-        $this->dispatch($product->getUrlKey());
+        $this->dispatch('/'.$product->getUrlKey().'.html');
         self::assertStringContainsString(
-            '"optPageUrl":"\/simple"',
+            '"optPageUrl":"\/simple',
             $this->getGaScriptFromPage()
         );
     }
