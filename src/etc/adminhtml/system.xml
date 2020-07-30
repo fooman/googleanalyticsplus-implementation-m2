@@ -18,6 +18,14 @@
                        showInWebsite="1" showInStore="1">
                     <label>Google Universal Analytics by Fooman</label>
 
+                    <field id="use_path_info" translate="label" type="select" sortOrder="300" showInDefault="1"
+                           showInWebsite="1" showInStore="1">
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                        <label>Use Path Info as Tracked Url</label>
+                        <tooltip>Path Info would track a pages https://example.com/catalog/product/view/id/2</tooltip>
+                        <config_path>google/analyticsplus_universal/use_path_info</config_path>
+                    </field>
+
                     <field id="display_advertising" translate="label" type="select" sortOrder="400" showInDefault="1"
                            showInWebsite="1" showInStore="1">
                         <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>

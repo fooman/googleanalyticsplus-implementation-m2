@@ -12,6 +12,7 @@ namespace Fooman\GoogleAnalyticsPlus\Helper;
 class Config extends \Magento\Framework\App\Helper\AbstractHelper
 {
     const XML_PATH_UNIVERSAL_ANONYMISE = 'google/analyticsplus_universal/anonymise';
+    const XML_PATH_UNIVERSAL_PATHINFO = 'google/analyticsplus_universal/use_path_info';
     const XML_PATH_UNIVERSAL_DISPLAY_ADS = 'google/analyticsplus_universal/display_advertising';
     const XML_PATH_ENHANCED_LINK_ATTRIBUTION = 'google/analyticsplus_universal/enhanced_link_attribution';
     const XML_PATH_UNIVERSAL_DEBUG = 'google/analyticsplus_universal/debug';
@@ -51,6 +52,19 @@ class Config extends \Magento\Framework\App\Helper\AbstractHelper
     {
         return $this->scopeConfig->isSetFlag(
             self::XML_PATH_ENHANCED_LINK_ATTRIBUTION,
+            \Magento\Store\Model\ScopeInterface::SCOPE_STORE
+        );
+    }
+
+    /**
+     * Config switch between path and requested uri
+     *
+     * @return bool
+     */
+    public function usePathInfo()
+    {
+        return $this->scopeConfig->isSetFlag(
+            self::XML_PATH_UNIVERSAL_PATHINFO,
             \Magento\Store\Model\ScopeInterface::SCOPE_STORE
         );
     }
