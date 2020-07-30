@@ -9,7 +9,9 @@
  */
 namespace Fooman\GoogleAnalyticsPlus\Block;
 
-class JsTest extends \Magento\TestFramework\TestCase\AbstractController
+use Fooman\PhpunitBridge\AbstractBackendController;
+
+class JsTest extends AbstractBackendController
 {
     /**
      * @magentoAppArea       frontend
@@ -20,7 +22,7 @@ class JsTest extends \Magento\TestFramework\TestCase\AbstractController
     {
         $this->dispatch('');
         $body = $this->getResponse()->getBody();
-        $this->assertContains("var foomanGaBaseUrl = '';", $body);
+        self::assertStringContainsString("var foomanGaBaseUrl = '';", $body);
     }
 
     /**
@@ -32,7 +34,7 @@ class JsTest extends \Magento\TestFramework\TestCase\AbstractController
     {
         $this->dispatch('/cms/index/index?param1=key1&param2');
         $body = $this->getResponse()->getBody();
-        $this->assertContains("var foomanGaBaseUrl = '/cms';", $body);
+        self::assertStringContainsString("var foomanGaBaseUrl = '/cms';", $body);
     }
 
     /**
@@ -44,7 +46,7 @@ class JsTest extends \Magento\TestFramework\TestCase\AbstractController
     {
         $this->dispatch('/index?</script><script>confirm(document.cookie)</script>');
         $body = $this->getResponse()->getBody();
-        $this->assertNotContains("<script>confirm(document.cookie)</script>", $body);
+        self::assertNotContains("<script>confirm(document.cookie)</script>", $body);
     }
 
     /**
@@ -56,6 +58,6 @@ class JsTest extends \Magento\TestFramework\TestCase\AbstractController
     {
         $this->dispatch('/index/</script><script>confirm(document.cookie)</script>');
         $body = $this->getResponse()->getBody();
-        $this->assertNotContains("<script>confirm(document.cookie)</script>", $body);
+        self::assertNotContains("<script>confirm(document.cookie)</script>", $body);
     }
 }

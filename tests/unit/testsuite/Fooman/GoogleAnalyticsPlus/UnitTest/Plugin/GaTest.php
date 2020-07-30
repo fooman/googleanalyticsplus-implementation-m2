@@ -1,4 +1,5 @@
 <?php
+
 namespace Fooman\GoogleAnalyticsPlus\UnitTest\Plugin;
 
 use Magento\Framework\TestFramework\Unit\Helper\ObjectManager;
@@ -16,7 +17,7 @@ class GaTest extends BaseUnitTestCase
      */
     protected $objectManager;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->objectManager = new ObjectManager($this);
     }
@@ -24,13 +25,13 @@ class GaTest extends BaseUnitTestCase
     public function testAroundGetPageTrackingCodeIncludesCreateTracker()
     {
         $actualResult = $this->executeAroundGetPageTracking();
-        $this->assertEquals(self::TEST_ACCT_ID, $actualResult['accountId']);
+        self::assertEquals(self::TEST_ACCT_ID, $actualResult['accountId']);
     }
 
     public function testAroundGetPageTrackingCodeIncludesSetPageName()
     {
         $actualResult = $this->executeAroundGetPageTracking();
-        $this->assertEquals('/cms', trim($actualResult['optPageUrl']));
+        self::assertEquals('/cms', trim($actualResult['optPageUrl']));
     }
 
     private function prepareSubjectMock()
@@ -40,8 +41,8 @@ class GaTest extends BaseUnitTestCase
             ['escapeUrl', 'getPageName']
         );
 
-        $this->gaMock->expects($this->any())->method('escapeUrl')->will($this->returnArgument(0));
-        $this->gaMock->expects($this->any())->method('getPageName')->will($this->returnValue(self::TEST_PAGE_URL));
+        $this->gaMock->method('escapeUrl')->will(self::returnArgument(0));
+        $this->gaMock->method('getPageName')->willReturn(self::TEST_PAGE_URL);
     }
 
     /**

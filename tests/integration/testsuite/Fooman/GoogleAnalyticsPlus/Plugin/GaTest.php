@@ -9,11 +9,22 @@
  */
 namespace Fooman\GoogleAnalyticsPlus\Plugin;
 
-class GaTest extends \Magento\TestFramework\TestCase\AbstractController
+use Magento\Catalog\Api\ProductRepositoryInterface;
+use Fooman\PhpunitBridge\AbstractBackendController;
+
+class GaTest extends AbstractBackendController
 {
     const GA_MARKER_START = '<!-- BEGIN GOOGLE ANALYTICS CODE -->';
     const GA_MARKER_END = '<!-- END GOOGLE ANALYTICS CODE -->';
 
+    /** @var ProductRepositoryInterface */
+    private $productRepository;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->productRepository =  Bootstrap::getObjectManager()->get(ProductRepositoryInterface::class);
+    }
 
     /**
      * @magentoAppArea       frontend
@@ -23,7 +34,10 @@ class GaTest extends \Magento\TestFramework\TestCase\AbstractController
     public function testOnlyOneTrackerUsed()
     {
         $this->dispatch('');
-        $this->assertEquals(1, substr_count($this->getGaScriptFromPage(), "Magento_GoogleAnalytics/js/google-analytics"));
+        self::assertEquals(
+            1,
+            substr_count($this->getGaScriptFromPage(), "Magento_GoogleAnalytics/js/google-analytics")
+        );
     }
 
     /**
@@ -34,7 +48,7 @@ class GaTest extends \Magento\TestFramework\TestCase\AbstractController
     public function testGetPageNameOnHomepage()
     {
         $this->dispatch('');
-        $this->assertContains('"optPageUrl":""', $this->getGaScriptFromPage());
+        self::assertStringContainsString('"optPageUrl":""', $this->getGaScriptFromPage());
     }
 
     /**
@@ -45,7 +59,7 @@ class GaTest extends \Magento\TestFramework\TestCase\AbstractController
     public function testGetPageNameOnHomepageWithSlash()
     {
         $this->dispatch('/');
-        $this->assertContains('"optPageUrl":""', $this->getGaScriptFromPage());
+        self::assertStringContainsString('"optPageUrl":""', $this->getGaScriptFromPage());
     }
 
     /**
@@ -56,7 +70,7 @@ class GaTest extends \Magento\TestFramework\TestCase\AbstractController
     public function testGetPageNameWithQuery()
     {
         $this->dispatch('/?param1=key1&param2');
-        $this->assertContains('"optPageUrl":""', $this->getGaScriptFromPage());
+        self::assertStringContainsString('"optPageUrl":""', $this->getGaScriptFromPage());
     }
 
     /**
@@ -67,7 +81,7 @@ class GaTest extends \Magento\TestFramework\TestCase\AbstractController
     public function testGetPageOnCmsIndexIndexNameWithQuery()
     {
         $this->dispatch('/cms/index/index?param1=key1&param2');
-        $this->assertContains(
+        self::assertStringContainsString(
             '"optPageUrl":"\/cms"',
             $this->getGaScriptFromPage()
         );
@@ -81,7 +95,7 @@ class GaTest extends \Magento\TestFramework\TestCase\AbstractController
     public function testGetPageNameOnCmsIndexIndex()
     {
         $this->dispatch('/cms/index/index');
-        $this->assertContains('"optPageUrl":"\/cms"', $this->getGaScriptFromPage());
+        self::assertStringContainsString('"optPageUrl":"\/cms"', $this->getGaScriptFromPage());
     }
 
     /**
@@ -93,9 +107,8 @@ class GaTest extends \Magento\TestFramework\TestCase\AbstractController
     public function testDisplayAdvertising()
     {
         $this->dispatch('');
-        $this->assertContains('"isDisplayFeaturesActive":1', $this->getGaScriptFromPage());
+        self::assertStringContainsString('"isDisplayFeaturesActive":1', $this->getGaScriptFromPage());
     }
-
 
     /**
      * @magentoAppArea       frontend
@@ -106,7 +119,7 @@ class GaTest extends \Magento\TestFramework\TestCase\AbstractController
     public function testDontDisplayAdvertising()
     {
         $this->dispatch('');
-        $this->assertContains('"isDisplayFeaturesActive":0', $this->getGaScriptFromPage());
+        self::assertStringContainsString('"isDisplayFeaturesActive":0', $this->getGaScriptFromPage());
     }
 
     /**
@@ -118,7 +131,7 @@ class GaTest extends \Magento\TestFramework\TestCase\AbstractController
     public function testEnhancedLinkAttribution()
     {
         $this->dispatch('');
-        $this->assertContains('"isEnhancedLinksActive":1', $this->getGaScriptFromPage());
+        self::assertStringContainsString('"isEnhancedLinksActive":1', $this->getGaScriptFromPage());
     }
 
     /**
@@ -130,7 +143,40 @@ class GaTest extends \Magento\TestFramework\TestCase\AbstractController
     public function testNoEnhancedLinkAttribution()
     {
         $this->dispatch('');
-        $this->assertContains('"isEnhancedLinksActive":0', $this->getGaScriptFromPage());
+        self::assertStringContainsString('"isEnhancedLinksActive":0', $this->getGaScriptFromPage());
+    }
+
+    /**
+     * @magentoAppArea       frontend
+     * @magentoDataFixture Magento/Catalog/_files/product_simple.php
+     * @magentoConfigFixture current_store google/analytics/active 1
+     * @magentoConfigFixture current_store google/analytics/account UA-123
+     */
+    public function testGetPageNameOnProductPage()
+    {
+        $product = $this->productRepository->get('simple');
+        $internalUrl = sprintf('catalog/product/view/id/%s', $product->getEntityId());
+        $this->dispatch($internalUrl);
+        self::assertStringContainsString(
+            '"optPageUrl":"\/catalog\/product\/view\/id"',
+            $this->getGaScriptFromPage()
+        );
+    }
+
+    /**
+     * @magentoAppArea       frontend
+     * @magentoDataFixture Magento/Catalog/_files/product_simple.php
+     * @magentoConfigFixture current_store google/analytics/active 1
+     * @magentoConfigFixture current_store google/analytics/account UA-123
+     */
+    public function testGetPageNameOnRewrittenProductPage()
+    {
+        $product = $this->productRepository->get('simple');
+        $this->dispatch($product->getUrlKey());
+        self::assertStringContainsString(
+            '"optPageUrl":"\/catalog\/product\/view\/id"',
+            $this->getGaScriptFromPage()
+        );
     }
 
     /**
