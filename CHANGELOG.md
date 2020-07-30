@@ -1,6 +1,10 @@
 # Change Log
 
 ## [105.1.0] - 2020-07-30
+### Added
+- Compatibility with Magento 2.4.0
+- Support for Php 7.4
+- Ability to switch tracked url to be based on requested uri
 
 ## [105.0.1] - 2019-10-08
 ### Fixed
