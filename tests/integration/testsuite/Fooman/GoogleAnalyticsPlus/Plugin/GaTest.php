@@ -173,7 +173,7 @@ class GaTest extends AbstractBackendController
     public function testGetPageNameOnRewrittenProductPage()
     {
         $product = $this->productRepository->get('simple');
-        $this->dispatch('/'.$product->getUrlKey());
+        $this->dispatch('/'.$product->getUrlKey().'.html');
         self::assertStringContainsString(
             '"optPageUrl":"\/catalog\/product\/view\/id',
             $this->getGaScriptFromPage()
