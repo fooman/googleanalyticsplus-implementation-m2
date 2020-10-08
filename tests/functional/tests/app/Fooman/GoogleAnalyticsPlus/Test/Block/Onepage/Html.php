@@ -25,4 +25,3 @@ class Html extends Block
         return PHP_EOL . substr($html, $start, $end - $start) . PHP_EOL;
     }
 }
-
