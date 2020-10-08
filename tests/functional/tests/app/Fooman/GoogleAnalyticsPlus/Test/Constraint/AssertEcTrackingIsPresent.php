@@ -37,7 +37,9 @@ class AssertEcTrackingIsPresent extends \Magento\Mtf\Constraint\AbstractConstrai
             str_replace([PHP_EOL, ' '], '', $checkoutOnepageSuccess->getFoomanHtml()->getGaScript()),
             self::GA_EC,
             'Ecommerce Tracking is not present. |' . str_replace(
-                [PHP_EOL, ' '], '', $checkoutOnepageSuccess->getFoomanHtml()->getGaScript()
+                [PHP_EOL, ' '],
+                '',
+                $checkoutOnepageSuccess->getFoomanHtml()->getGaScript()
             ) . '|'
         );
     }
