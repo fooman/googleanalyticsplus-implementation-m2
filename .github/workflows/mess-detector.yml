@@ -1,4 +1,4 @@
-name: M2 Mess Detector
+name: ExtDN
 on: [push, pull_request]
 
 jobs:
