@@ -1,9 +1,9 @@
-name: M2 Coding Standard
+name: ExtDN
 on: [push, pull_request]
 
 jobs:
   static:
-    name: Static Code Analysis
+    name: M2 Coding Standard
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
