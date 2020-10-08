@@ -1,4 +1,4 @@
-name: M2 PhpStan
+name: ExtDN
 on: [push, pull_request]
 
 jobs:
