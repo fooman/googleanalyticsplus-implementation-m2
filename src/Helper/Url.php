@@ -34,6 +34,10 @@ class Url extends \Magento\Framework\App\Helper\AbstractHelper
      */
     public function getUnifiedPageName($customPageName = '')
     {
+        if (!$customPageName) {
+            return '';
+        }
+
         $pageName = trim($customPageName);
 
         if (empty($pageName)) {
