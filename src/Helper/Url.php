@@ -34,7 +34,7 @@ class Url extends \Magento\Framework\App\Helper\AbstractHelper
      */
     public function getUnifiedPageName($customPageName = '')
     {
-        $pageName = trim($customPageName);
+        $pageName = trim((string) $customPageName);
 
         if (empty($pageName)) {
             if ($this->config->usePathInfo()) {
@@ -44,11 +44,7 @@ class Url extends \Magento\Framework\App\Helper\AbstractHelper
             }
         }
 
-        if (!$pageName) {
-            return '';
-        }
-
-        return rtrim(str_replace(['/index', '/?'], ['', '?'], $pageName), '/');
+        return rtrim(str_replace(['/index', '/?'], ['', '?'], (string) $pageName), '/');
     }
 
     public function getUnifiedUrlParts()
