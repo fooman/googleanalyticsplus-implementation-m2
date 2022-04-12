@@ -1,6 +1,8 @@
 # Change Log
 
 ## [Unreleased]
+### Added
+- Support for Php 8.0/8.1
 
 ## [105.1.0] - 2020-07-30
 ### Added
