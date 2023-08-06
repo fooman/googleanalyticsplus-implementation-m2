@@ -36,7 +36,7 @@ class Ga
         $result
     ) {
         $result['isDisplayFeaturesActive'] = (int)$this->helper->isDisplayAdvertisingEnabled();
-        $result['optPageUrl'] = $this->getPageName($subject);
+        $result['optPageUrl'] = $this->getPageName();
         $result['isEnhancedLinksActive'] = (int)$this->helper->isEnhancedLinkAttrEnabled();
         return $result;
     }
