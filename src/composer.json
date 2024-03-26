@@ -3,7 +3,7 @@
     "license": "OSL-3.0",
     "description": "Additional functionality for the default Magento Google Analytics",
     "type": "magento2-module",
-    "version": "105.3.1",
+    "version": "105.3.2",
     "autoload": {
         "psr-4": {
             "Fooman\\GoogleAnalyticsPlus\\": ""
