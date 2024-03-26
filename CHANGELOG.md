@@ -1,5 +1,7 @@
 # Change Log
 
+## [Unreleased]
+
 ## [105.3.1] - 2024-03-26
 ### Changed
 - With Google's retirement of Google Analytics in favour of GA4 this package is no longer useful at it built on top of Magento's core Google Analytics implementation
